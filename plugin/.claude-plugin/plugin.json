@@ -1,0 +1,25 @@
+{
+  "name": "mactech-cmmc",
+  "displayName": "MacTech CMMC & Federal Compliance",
+  "version": "1.2.0",
+  "description": "NIST SP 800-171 with exact SPRS scoring and the 800-171A assessment objectives, 2,029 DISA STIG rules across 15 benchmarks with .ckl checklist export, and live SAM.gov / USASpending federal market data. No account or API key required.",
+  "author": {
+    "name": "MacTech Solutions LLC",
+    "url": "https://www.mactechsolutionsllc.com"
+  },
+  "homepage": "https://www.mactechsolutionsllc.com/mcp",
+  "repository": "https://github.com/MacTech-Solutions-LLC/mactech",
+  "license": "MIT",
+  "keywords": [
+    "cmmc",
+    "nist-800-171",
+    "sprs",
+    "stig",
+    "compliance",
+    "defense",
+    "govcon",
+    "sam.gov"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/"
+}

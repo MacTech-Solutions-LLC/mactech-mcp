@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "mactech-cmmc": {
+      "type": "http",
+      "url": "https://www.mactechsolutionsllc.com/api/mcp",
+      "timeout": 30000
+    },
+    "mactech-market": {
+      "type": "http",
+      "url": "https://www.mactechsolutionsllc.com/api/mcp/market",
+      "timeout": 30000
+    },
+    "mactech-stig": {
+      "type": "http",
+      "url": "https://www.mactechsolutionsllc.com/api/mcp/stig",
+      "timeout": 30000
+    }
+  }
+}

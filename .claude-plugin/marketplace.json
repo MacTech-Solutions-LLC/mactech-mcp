@@ -1,0 +1,16 @@
+{
+  "name": "mactech",
+  "description": "MacTech Solutions MCP servers for CMMC, NIST SP 800-171, DISA STIG and federal contracting.",
+  "owner": {
+    "name": "MacTech Solutions LLC",
+    "url": "https://www.mactechsolutionsllc.com"
+  },
+  "plugins": [
+    {
+      "name": "mactech-cmmc",
+      "source": "./plugin",
+      "description": "NIST SP 800-171 with exact SPRS scoring, 800-171A assessment objectives, 2,029 DISA STIG rules with checklist export, and live SAM.gov / USASpending data. No account required.",
+      "version": "1.2.0"
+    }
+  ]
+}
