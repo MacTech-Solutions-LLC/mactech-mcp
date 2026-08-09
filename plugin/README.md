@@ -4,7 +4,7 @@ Four commands over MacTech's three public MCP servers. No account, no API key, n
 sign-up — the servers are open on purpose.
 
 ```
-/plugin marketplace add MacTech-Solutions-LLC/mactech
+/plugin marketplace add MacTech-Solutions-LLC/mactech-mcp
 /plugin install mactech-cmmc@mactech
 ```
 
