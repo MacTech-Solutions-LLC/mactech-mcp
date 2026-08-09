@@ -1,0 +1,43 @@
+{
+  "name": "mactech-compliance-mcp",
+  "version": "1.0.0",
+  "description": "Offline MCP server for CMMC / NIST SP 800-171 with exact SPRS scoring and 2,029 DISA STIG rules. No account, no API key, no network.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "cmmc",
+    "nist-800-171",
+    "sprs",
+    "stig",
+    "disa",
+    "compliance",
+    "defense",
+    "govcon",
+    "air-gapped"
+  ],
+  "homepage": "https://www.mactechsolutionsllc.com/mcp",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MacTech-Solutions-LLC/mactech-mcp.git",
+    "directory": "npm"
+  },
+  "bugs": {
+    "url": "https://github.com/MacTech-Solutions-LLC/mactech-mcp/issues"
+  },
+  "license": "MIT",
+  "author": "MacTech Solutions LLC",
+  "type": "module",
+  "bin": {
+    "mactech-compliance-mcp": "bin/mactech-compliance-mcp.mjs"
+  },
+  "files": [
+    "bin/",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

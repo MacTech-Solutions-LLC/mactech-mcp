@@ -66,3 +66,17 @@ release.
 ## License
 
 MIT.
+
+## npm
+
+The offline build is also published as an npm package, which is the easiest
+install for a host that has registry access but should not call out to our
+servers at runtime:
+
+```sh
+claude mcp add --transport stdio mactech-compliance -- npx -y mactech-compliance-mcp
+```
+
+See [`npm/`](./npm) for details. To cut a release, rebuild the bundle in the
+application repository (`npm run build:offline`), copy it to `npm/bin/`, bump
+`npm/package.json`, and publish.
