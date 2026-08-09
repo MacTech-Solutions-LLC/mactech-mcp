@@ -1,0 +1,66 @@
+name: Publish to npm
+
+# Trusted Publishing (OIDC). No npm token exists anywhere — not in the repo,
+# not in secrets, not on a laptop. GitHub mints a short-lived identity token
+# for this specific workflow in this specific repository, and npm accepts it
+# because the package is configured to trust exactly that.
+#
+# This replaces a granular access token that, because npm cannot scope a token
+# to a package that does not exist yet, had to carry write access to *all*
+# packages in order to make the first publish. That token now has nothing to do.
+#
+# Setup on npmjs.com (once, per package):
+#   Package → Settings → Trusted Publisher → GitHub Actions
+#     Organization or user: MacTech-Solutions-LLC
+#     Repository:           mactech-mcp
+#     Workflow filename:    publish.yml
+#     Environment:          (leave blank)
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  # The whole point: lets the job request an OIDC token. Without it npm has
+  # nothing to verify and falls back to looking for a credential that is not there.
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Trusted publishing needs npm 11.5.1 or newer, which is ahead of what
+      # ships with Node 20. Pinning the floor rather than taking latest keeps
+      # a future npm release from changing publish behaviour without a commit.
+      - name: Use an npm that supports OIDC
+        run: npm install -g npm@^11.5.1
+
+      - name: Verify the bundle is present and runnable
+        working-directory: npm
+        run: |
+          test -f bin/mactech-compliance-mcp.mjs || { echo "bundle missing — rebuild it in the application repo and copy it here"; exit 1; }
+          node --check bin/mactech-compliance-mcp.mjs
+
+      # A published version cannot be replaced, so a tag that does not match
+      # package.json would either fail confusingly or publish the wrong number.
+      - name: Check the tag matches package.json
+        if: startsWith(github.ref, 'refs/tags/v')
+        working-directory: npm
+        run: |
+          TAG="${GITHUB_REF_NAME#v}"
+          PKG=$(node -p "require('./package.json').version")
+          [ "$TAG" = "$PKG" ] || { echo "tag $GITHUB_REF_NAME does not match package.json version $PKG"; exit 1; }
+
+      - name: Publish
+        working-directory: npm
+        run: npm publish
